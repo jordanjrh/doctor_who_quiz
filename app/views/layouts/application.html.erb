@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DoctorWhoQuizRails</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="icons/tardis.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="parent">
+        <a href="javascript:delay('/secondaries')"><div class="secondary"><img style="width:30px;" src="/icons/martha.ico" ></div></a>
+        <a href="javascript:delay('/villains')"><div class="villain"><img style="width:30px;" src="/icons/dalek.ico" ></div></a>
+        <a href="javascript:delay('/companions')"><div class="companion"><img style="width:30px;" src="/icons/amy.ico" ></div></a>
+        <a href="javascript:delay('/')"><div class="doctor"><img style="width:30px;" src="/icons/smith.ico" ></div></a>
+        <div class="mask"><img style="width:80px;" src="/icons/tardis.png" ></i></div>
+      </div>
+    <%= yield %>
+  </div>
+
+  <script>
+    function delay (URL) {
+      setTimeout( function() { window.location = URL }, 100 );
+    }
+    $(document).ready(function() {
+      var active1 = false;
+      var active2 = false;
+      var active3 = false;
+      var active4 = false;
+
+        $('.parent').on('mousedown touchstart', function() {
+
+        if (!active1) $(this).find('.secondary').css({ 'transform': 'translate(0px,125px)'});
+        else $(this).find('.secondary').css({ 'transform': 'none'});
+         if (!active2) $(this).find('.villain').css({ 'transform': 'translate(60px,105px)'});
+        else $(this).find('.villain').css({ 'transform': 'none'});
+          if (!active3) $(this).find('.companion').css({ 'transform': 'translate(105px,60px)'});
+        else $(this).find('.companion').css({ 'transform': 'none'});
+          if (!active4) $(this).find('.doctor').css({ 'transform': 'translate(125px,0px)'});
+        else $(this).find('.doctor').css({ 'transform': 'none'});
+        active1 = !active1;
+        active2 = !active2;
+        active3 = !active3;
+        active4 = !active4;
+        });
+    });
+  </script>
+
+  </body>
+</html>

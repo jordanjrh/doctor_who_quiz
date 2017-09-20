@@ -1,0 +1,57 @@
+<div class="doctor_page_container">
+  <div class="doctor_page_content">
+    <h3>DOCTOR WHO</h3>
+
+    <img src='<%= @characterArr[@answer][:image_url]%>' width="200" >
+
+    <p class="question">Who is this <%= @characterArr[@answer][:category] %>?</p>
+
+    <ul class="answers">
+      <input type="radio" name="question1" id="<%= @selections[0] %>"> <%= @characterArr[@selections[0]][:name] %> </label><br/>
+      <input type="radio" name="question1" id="<%= @selections[1] %>"> <%= @characterArr[@selections[1]][:name] %> </label><br/>
+      <input type="radio" name="question1" id="<%= @selections[2] %>"> <%= @characterArr[@selections[2]][:name] %> </label><br/>
+    </ul>
+
+    <button id="results">
+      Submit
+    </button>
+
+    <div class="alert alert-info fade out" id="bsalert">
+      <div id="alertMessage"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+
+    function toggleAlert(message){
+      $("#alertMessage").text(message)
+      $(".alert").toggleClass('in out');
+        return false; // Keep close.bs.alert event from removing from DOM
+      }
+      $("#btn").on("click", toggleAlert);
+      $('#bsalert').on('close.bs.alert', toggleAlert)
+
+
+    $("#results").click(function() {
+      if ( !$("input[name=question1]:checked").val() ) {
+        alert("You're not done yet!");
+      }
+      else {
+        var answer = <%= @answer %>
+        if ($("input[name=question1]:checked").attr("id") === String(answer)){
+          toggleAlert("Correct!")
+        } else {
+          toggleAlert("Incorrect!")
+        }
+        $('input[name="question1"]').prop('checked', false);
+        function refresh(){
+          window.location.reload();
+        }
+
+        setTimeout(refresh, 500);
+      }
+    });
+});
+</script>

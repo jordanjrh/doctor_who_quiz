@@ -1,0 +1,39 @@
+.answers li {
+  list-style: upper-alpha;
+}
+
+label {
+  margin-left: 0.5em;
+  cursor: pointer;
+}
+
+#results {
+  background: #dddada;
+  color: 000000;
+  padding: 3px;
+  text-align: center;
+  width: 200px;
+  cursor: pointer;
+  border: 1px solid gray;
+}
+
+#results:hover {
+  background: #3d91b8;
+  color: #ffffff;
+  padding: 3px;
+  text-align: center;
+  width: 200px;
+  cursor: pointer;
+  border: 1px solid gray;
+}
+
+#question_container {
+  display: none;
+}
+.doctor_page_content{
+  width: 200px;
+}
+.doctor_page_content{
+  margin: 0 auto
+}
+  
